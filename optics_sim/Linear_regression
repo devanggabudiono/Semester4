@@ -1,0 +1,40 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Experimental data
+x = np.array([1, 2, 3, 4, 5])
+y = np.array([2.1, 4.0, 6.1, 8.0, 9.9])
+
+# Linear regression (least squares)
+a, b = np.polyfit(x, y, 1)
+
+# Model prediction
+y_fit = a*x + b
+
+# Least squares error (standard deviation)
+sigma = np.sqrt(np.sum((y - y_fit)**2) / (len(x) - 2))
+
+# Output values
+print(f"Slope (a)       = {a:.4f}")
+print(f"Intercept (b)   = {b:.4f}")
+print(f"Fit error (σ)   = {sigma:.4f}")
+
+# Plot
+plt.scatter(x, y, label="Experimental Data")
+plt.plot(x, y_fit, label=f"Fit: y = {a:.2f}x + {b:.2f}")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend()
+plt.grid(True)
+plt.savefig("plot.png")
+x = [1, 2, 3, 4, 5]
+y = [2.1, 4.0, 6.1, 8.0, 9.9]
+
+a, b = __import__("numpy").linalg.lstsq(
+    __import__("numpy").vstack([x, [1]*len(x)]).T,
+    y,
+    rcond=None
+)[0]
+
+print("y = {:.3f}x + {:.3f}".format(a, b))
+
